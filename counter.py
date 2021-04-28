@@ -24,15 +24,20 @@ def main():
                         "5":0,"6":0,"7":0,"8":0,"9":0,
                         " ":0,"/":0,"other":0}
     while done==False:
+        text=""
+        final=""
         read_file=input("read file?\n-->")
-        if read_file=="Y" or read_file=="y" or read_file=="Yes" or read_file=="YES":
+        if read_file=="Y" or read_file=="y" or read_file=="Yes" or read_file=="YES" or read_file=="yes":
             file_name=input("file?\n-->")
+            print("trying file"+file_name+".txt")
             try:
                 a=open(str(file_name)+".txt","r")
                 text=a.read()
                 a.close()
-            except:
-                print("can not create read file "+str(file_name)+".txt")
+                print("File "+file_name+".txt read")
+            except Exception as e:
+                print("can not read file "+str(file_name)+".txt")
+                print(str(e))
         else:
             text=input("text?\n-->")
         for char in text:
@@ -50,7 +55,7 @@ def main():
     for key in valid_sequence_char:
         final=final+"Key "+str(key)+": "+str(valid_sequence_char[key])+"\n"
     write_to_file=input("write to file?")
-    if write_to_file=="Y" or write_to_file=="Yes" or write_to_file=="y" or write_to_file=="yes":
+    if write_to_file=="Y" or write_to_file=="Yes" or write_to_file=="y" or write_to_file=="yes" or write_to_file=="YES":
         write_to_file=True
     else:
         write_to_file=False
@@ -60,8 +65,14 @@ def main():
             a=open(str(file_name)+".txt","x")
             a.write(final)
             a.close()
-        except:
-            print("can not create new file "+str(file_name)+".txt")
+            print("Final count written to file "+file_name+".txt")
+            print("File "+file_name+".txt read")
+        except Exception as e:
+            print("can not read file "+str(file_name)+".txt")
+            print(str(e))
+    else:
+        pass
+    input()
     print(final)
     input()
     exit()
