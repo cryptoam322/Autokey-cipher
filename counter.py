@@ -24,7 +24,17 @@ def main():
                         "5":0,"6":0,"7":0,"8":0,"9":0,
                         " ":0,"/":0,"other":0}
     while done==False:
-        text=input("text?\n-->")
+        read_file=input("read file?\n-->")
+        if read_file=="Y" or read_file=="y" or read_file=="Yes" or read_file=="YES":
+            file_name=input("file?\n-->")
+            try:
+                a=open(str(file_name)+".txt","r")
+                text=a.read()
+                a.close()
+            except:
+                print("can not create read file "+str(file_name)+".txt")
+        else:
+            text=input("text?\n-->")
         for char in text:
             if char in valid_sequence_char:
                 valid_sequence_char[char]=valid_sequence_char[char]+1
